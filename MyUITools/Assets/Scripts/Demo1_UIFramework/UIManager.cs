@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     private void ParseUIPanelTypeJson() {
         mPanelPathDictionary = new Dictionary<UIPanelType, string>();
-        TextAsset textAsset = Resources.Load<TextAsset>("Demo1/UIPanelType");
+        TextAsset textAsset = Resources.Load<TextAsset>("Demo1_UIFramework/UIPanelType");
         //将json对象转化为UIPanelTypeJson类
         UIPanelTypeJson jsonObject = JsonUtility.FromJson<UIPanelTypeJson>(textAsset.text);
         foreach (UIPanelInformation info in jsonObject.infoList) {
@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour {
             mPanelPool.Remove(panelType);
             string path;
             mPanelPathDictionary.TryGetValue(panelType, out path);
-            GameObject instancePanel = Instantiate(Resources.Load("Demo1/" + path)) as GameObject;
+            GameObject instancePanel = Instantiate(Resources.Load("Demo1_UIFramework/" + path)) as GameObject;
             if (instancePanel != null) {
                 instancePanel.transform.SetParent(mUIRootTransform, false);
                 var targetPanel = instancePanel.GetComponent<BasePanel>();
