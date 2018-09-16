@@ -1,5 +1,11 @@
 ## Unity实现基于UGUI的简易UI框架
 
+---
+图片丢失 
+请转到https://blog.csdn.net/jingangxin666/article/details/80092801 查看
+
+---
+
 ### 什么是UI框架？
 
 UI框架中的 `UIManager` 管理场景中所有的面板, 控制面板之间的跳转. 
