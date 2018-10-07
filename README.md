@@ -1,10 +1,12 @@
 ## Unity实现基于UGUI的简易UI框架
 
 ---
-图片丢失 
+若图片丢失 
 请转到https://blog.csdn.net/jingangxin666/article/details/80092801 查看
 
 ---
+## Unity实现基于UGUI的简易UI框架
+
 
 ### 什么是UI框架？
 
@@ -150,7 +152,6 @@ public class UIPanelTypeJson {
 **为什么使用`virtual`关键字而不是`abstract`关键字来修饰?**
 
 - 使得子类可以选择是否需要重写方法
-- //todo
 
 ### 控制UI面板Prefab的实例化创建和管理
 
@@ -266,6 +267,7 @@ public class UIPanelTypeJson {
 - 注意:
 
   - prefab的面板要设置可见, 不然会有奇怪的事情发生!
+  - **2018年10月8日补充:** 了解更多关于生命周期, 请查看:[[注解]Execution Order of Event Functions: Unity生命周期及常见问题](https://blog.csdn.net/jingangxin666/article/details/82961358)
 
 ![这里写图片描述](https://img-blog.csdn.net/20180426134451119?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
@@ -297,19 +299,37 @@ public class UIPanelTypeJson {
     }
 ```
 
-如何切换场景?
+**如何切换场景?**
 
 ```
         UIManager.Instance.RefreshDataOnSwitchScene();
         SceneManager.LoadScene("NewScene");
-
 ```
+#### 关于Unity中的序列化
 
+##### 什么是序列化 　
+　
+序列化可以用于跨平台。实际上就是把一段数据翻译成（序列化）比较底层的语言（如汇编、机器语言），而基于这个底层语言再可以翻译（反序列化）成多种上一层的语言。
 
-### 个人博客
+##### Unity中的序列化 　　
 
-[jingangxin36](https://blog.csdn.net/jingangxin666)
+Unity会自动序列化所有你自己写的脚本组件（Scriptable Object）， 重载新的程序集，并且重新创建你的脚本组件。简单的说，序列化后，数据就可以被保存了。Unity序列化过程不走.NET的方法，而是Unity内部的方法。
 
-### 个人邮箱
+##### 可序列类型
 
-jingangxin36@foxmail.com
+* 所有继承自UnityEngine.Object的类，例如 GameObject, Component, MonoBehaviour, Texture2D, AnimationClip.
+* 所有基本数据类型，如 int, string, float, bool等。
+* 一些内置类型，如Vector3、Quaternion,、Matrix4x4、Color、Rect、 LayerMask等。
+* 可序列化类型的数组
+* 可序列化类型的列表
+* 枚举类型
+* 结构类型
+
+##### Unity可以序列化的有：
+
+1. 可序列化类型中[公有, 非静态]字段。
+2. [非公有非静态]，但是带[SerializeField] 特性的字段。
+
+#### 项目地址
+
+https://github.com/jingangxin36/MyUITools
